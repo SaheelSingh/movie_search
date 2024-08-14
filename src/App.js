@@ -23,7 +23,6 @@ function App() {
       const data = await response.json();
       setLoading(false)
       setContainer(data.d)
-      console.log(data.d)
     } catch (error) {
       console.log(error)
     }
@@ -38,24 +37,29 @@ function App() {
     <div className="App">
       <form onSubmit={submitHandler}>
         <input value={endpoint} onChange={(e) => setEndPoint(e.target.value)} type='text' />
-        <button>Submit</button>
+        <button className={endpoint ? 'buttonDisplay' : 'buttonHide'}>Submit</button>
       </form>
 
       {
         loading === true && (
-          <span>Loading...</span>
+          <span>Please wait few moment...</span>
         )
       }
 
       {
-        !loading && container.map(movie => {
-          return (
-            <div key={movie ? movie.id : ""}>
-              <img src={movie ? movie.i.imageUrl : ""} alt='movie_image' />
-              <p>{movie ? movie.l : ""}</p>
-            </div>
-          )
-        })
+        !loading && container.length !== 0 ? (
+          container.map(movie => {
+            return (
+              <div key={movie ? movie.id : ""}>
+                <img src={movie?.i?.imageUrl} alt='movie_image' />
+                <p>{movie ? movie.l : ""}</p>
+              </div>
+            )
+          })
+        )
+        : (
+          <></>
+        )
       }
     </div>
   );
