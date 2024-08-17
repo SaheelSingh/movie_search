@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: build project
-        run: npm build
+        run: npm run build
 
       - name: Upload production-ready files
         uses: actions/upload-artifact@v3
