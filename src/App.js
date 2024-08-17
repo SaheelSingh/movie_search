@@ -35,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Search Movie</h1>
       <form onSubmit={submitHandler}>
         <input value={endpoint} onChange={(e) => setEndPoint(e.target.value)} type='text' />
         <button className={endpoint ? 'buttonDisplay' : 'buttonHide'}>Submit</button>
